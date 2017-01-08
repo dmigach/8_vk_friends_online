@@ -33,5 +33,10 @@ def output_friends_online(friends_online_list):
 if __name__ == '__main__':
     user_login = get_user_login()
     user_password = get_user_password()
-    friends_online = get_online_friends(user_login, user_password)
-    output_friends_online(friends_online)
+    try:
+        friends_online = get_online_friends(user_login, user_password)
+        output_friends_online(friends_online)
+    except vk.exceptions.VkAuthError:
+        pass
+        # vk library is printing pretty self-explaining and clear error
+        # to console, so there is no need to print something custom
